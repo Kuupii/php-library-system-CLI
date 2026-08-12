@@ -83,7 +83,7 @@
         */
         // choices
         echo "1: Exit\n";
-        echo "2: View all Books\n"; // ascending/descending
+        echo "2: View all Books ({$books->getBookCount()})\n"; // ascending/descending
         echo "3: Add a Book\n";
         echo "4: Find a Book by ID\n";
         echo "5: Configure a Book by ID\n";

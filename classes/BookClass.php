@@ -203,5 +203,4 @@
     // $test->Add(9203, "I know what you did last Wednesday", 291929392, "Walker Books", 3, "Anthony Horowitz");
     // $test->Add(2918, "Happy Face", 222919112, "Naver Webtoon", 4, "Jeo-nyeok LEE");
     // $test->Add(3292, "Amulet", 220098796, "Graphix", 5, "Kazu Kibuishi");
-    // $test->DeleteBook(3292)
 ?>
