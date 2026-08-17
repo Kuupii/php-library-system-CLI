@@ -147,7 +147,7 @@
                 // double check
                 $books->SearchBook($deleteId);
                 do {
-                    $check = readline("Are you sure you want to delete this book?(y/n)");
+                    $check = readline("Are you sure you want to delete this book?(y/n): ");
                     $check = strtolower($check);
                 } while ($check != "y" && $check != "n");
 
@@ -165,8 +165,8 @@
             // Delete All Books
             case 6:
                 // Double Check
-                if (empty($books) == True){
-                    echo "No  books to delete.\n";
+                if ($books->getCount() == 0){
+                    echo "No books to delete.\n";
                 }
                 else{
                     do{
@@ -184,9 +184,6 @@
                 }
                 loadTime();
                 break;
-            
-            
-            
             // View Other Resources
             case 7:
                 $resource->ResourceList();
@@ -219,28 +216,101 @@
                 $deleteId = (int)readline("Other Resource ID to delete: ");
                 
                 // double check
-                $resource->SearchResource($deleteId);
-                do {
-                    $check = readline("Are you sure you want to delete this Other Resource?(y/n)");
-                    $check = strtolower($check);
-                } while ($check != "y" && $check != "n");
+                if ($resource->SearchResource($deleteId)){
+                    do {
+                        $check = readline("Are you sure you want to delete this Other Resource?(y/n): ");
+                        $check = strtolower($check);
+                    } while ($check != "y" && $check != "n");
 
-                if ($check == "y"){
-                    $resource->DeleteResource($deleteId);
-                }
-                else{
-                    echo "Aborting...";
+                    if ($check == "y"){
+                        $resource->DeleteResource($deleteId);
+                    }
+                    else{
+                        echo "Aborting...";
+                    }
                 }
 
                 echo "\n";
                 loadTime();
-                break;                
+                break;  
+            // Delete ALL Other Resources
+            case 11:
+                // Double Check
+                if ($books->getCount() == 0){
+                    echo "No Other Resource to delete.\n";
+                }
+                else{
+                    do{
+                        $check = readline("Are you sure you want to delete all {$resource->getCount()} Other Resources?(y/n): ");
+                        $check = strtolower($check);
+                    } while($check != "y" && $check != "n");
+                    
+                    // Deletes ALL
+                    if ($check == "y"){
+                        $resource->DeleteAll();
+                    }
+                    else{
+                        echo "Aborting...";
+                    }
+                }
+                loadTime();
+                break;        
+            // Delete Everything
+            case 99:
+                // Double Check
+                if ($books->getCount() == 0){
+                    echo "No books to delete. Skipping...\n";
+                }
+
+                if ($resource->getCount() == 0){
+                    echo "No Other Resource to delete. Skipping...\n";
+                }
+                
+                if ($resource->getCount() > 0 || $books->getCount() > 0){
+                    do{
+                        $check = readline("Are you sure you want to delete all {$resource->getCount()} Other Resources and all {$books->getCount()} books?(y/n): ");
+                        $check = strtolower($check);
+                    } while($check != "y" && $check != "n");
+                    
+                    // Deletes ALL
+                    if ($check == "y"){
+                        if (!empty($books)){
+                            $books->DeleteAll();
+                        }
+                        if (!empty($resource)){
+                            $resource->DeleteAll();
+                        }
+                    }
+                    else{
+                        echo "Aborting...";
+                    }
+                }
+                loadTime();
+                break;                 
             // Exit
             case 1:
                 echo "Exiting...";
                 sleep(1);
                 $exit = True;
                 break;
+            
+            // Debug (Secret)
+            case 88:
+                $newBook = new BookClass;
+                $newBook->Add(2534, "Ao Ashi", 928399928, "Shogakukan", 1, "Yugo Kobayashi");
+                $newBook->Add(6752, "Eragon", 201922919, "Alfred A. Knopf", 2, "Christopher Paolini");
+                $newBook->Add(9203, "I know what you did last Wednesday", 291929392, "Walker Books", 3, "Anthony Horowitz");
+                $newBook->Add(2918, "Happy Face", 222919112, "Naver Webtoon", 4, "Jeo-nyeok LEE");
+                $newBook->Add(3292, "Amulet", 220098796, "Graphix", 5, "Kazu Kibuishi");
+
+                $newResources = new OtherResource;
+                $newResources->Add(2293, "Television", "QLED, 8K Ultra HD", "Samsung");
+                $newResources->Add(2931, "Piano", "CA701 Digital Piano 88-keys", "Kawai");
+                $newResources->Add(723, "Camera", "7500 DSLR 18-140mm Lens", "Nikon");    
+                
+                loadTime();
+                break;
+
             // Default retries
             default:
                 echo "Invalid Input. Try again.\n";

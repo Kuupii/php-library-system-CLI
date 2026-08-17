@@ -68,7 +68,7 @@
                 }
             }
         }
-        public function DeleteResource(){
+        public function DeleteResource($id){
             // Read Data
             $resource = self::readData();
 
@@ -108,6 +108,7 @@
             // empty check
             if (empty($resource)){
                 echo "No Other Resources available!\n!!!Failed\n\n";
+                return False;
             }
 
             else{
@@ -116,12 +117,14 @@
                     if ($id == $resourceID){
                         echo "OTHER RESOURCE FOUND!\n";
                         $found = True;
-                        echo "ID [$resourceID]\n* Name: {$aResource['res_name']}\n* Resource Description: {$aResource['res_des']}\n* Resource_Brand: {$aResource['res_brand']}\n* Resource Type: {$aResource['resource_category']}";
+                        echo "ID [$resourceID]\n* Name: {$aResource['res_name']}\n* Resource Description: {$aResource['res_des']}\n* Resource_Brand: {$aResource['res_brand']}\n* Resource Type: {$aResource['resource_category']}\n";
                     }
                 }
                 if ($found == False){
                     echo "!!! Resource with ID [$resourceID] could not be found.\n";
+                    return False;
                 }
+                return True;
             }
 
         }
@@ -165,11 +168,4 @@
             }
         }
     }
-    // test
-    // resource_id, resource_name, resource_description, resource_brand
-    // $test = new OtherResource;
-    // $test->Add(2293, "Television", "QLED, 8K Ultra HD", "Samsung");
-    // $test->Add(2931, "Piano", "CA701 Digital Piano 88-keys", "Kawai");
-    // $test->Add(723, "Camera", "7500 DSLR 18-140mm Lens", "Nikon");
-
 ?>
