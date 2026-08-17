@@ -1,0 +1,20 @@
+{
+    "2293": {
+        "res_name": "Television",
+        "res_des": "QLED, 8K Ultra HD",
+        "res_brand": "Samsung",
+        "resource_category": "OTHER-RESOURCE"
+    },
+    "2931": {
+        "res_name": "Piano",
+        "res_des": "CA701 Digital Piano 88-keys",
+        "res_brand": "Kawai",
+        "resource_category": "OTHER-RESOURCE"
+    },
+    "723": {
+        "res_name": "Camera",
+        "res_des": "7500 DSLR 18-140mm Lens",
+        "res_brand": "Nikon",
+        "resource_category": "OTHER-RESOURCE"
+    }
+}

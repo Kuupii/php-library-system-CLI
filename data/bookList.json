@@ -6,7 +6,8 @@
         "author": {
             "author_id": 1,
             "author_name": "Yugo Kobayashi"
-        }
+        },
+        "resource_category": "BOOK"
     },
     "6752": {
         "book_name": "Eragon",
@@ -15,7 +16,8 @@
         "author": {
             "author_id": 2,
             "author_name": "Christopher Paolini"
-        }
+        },
+        "resource_category": "BOOK"
     },
     "9203": {
         "book_name": "I know what you did last Wednesday",
@@ -24,7 +26,8 @@
         "author": {
             "author_id": 3,
             "author_name": "Anthony Horowitz"
-        }
+        },
+        "resource_category": "BOOK"
     },
     "2918": {
         "book_name": "Happy Face",
@@ -33,7 +36,8 @@
         "author": {
             "author_id": 4,
             "author_name": "Jeo-nyeok LEE"
-        }
+        },
+        "resource_category": "BOOK"
     },
     "3292": {
         "book_name": "Amulet",
@@ -42,6 +46,7 @@
         "author": {
             "author_id": 5,
             "author_name": "Kazu Kibuishi"
-        }
+        },
+        "resource_category": "BOOK"
     }
 }

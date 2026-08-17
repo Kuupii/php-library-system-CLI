@@ -10,7 +10,7 @@
         private $author;
 
         // defining constant file path
-        private const FILE_PATH = "data\\bookList.json";
+        private const FILE_PATH = "data/bookList.json";
 
         // set resource type
         public function __construct(){
@@ -25,7 +25,6 @@
             $file = file_get_contents(self::FILE_PATH);
             return json_decode($file, true) ?? []; // Associative Array, fallsback to empty list []
         }
-
         private static function writeData($book){
             $file = json_encode($book, JSON_PRETTY_PRINT); // JSON_PRETTY_PRINT makes it easier for humans to read
             file_put_contents(self::FILE_PATH, $file);
@@ -54,6 +53,7 @@
                 'book_isbn' => $book_isbn,
                 'book_publisher' => $book_publisher,
                 'author' => $this->author->getArray(),
+                'resource_category' => $this->getResourceCategory(),
             ];
 
             // Write
@@ -62,7 +62,6 @@
             // Confirm
             echo "Book added successfully.\n";
         }
-
         public function DeleteBook($id){
             // Read Data
             $books = self::readData();
@@ -84,13 +83,12 @@
             }
 
         }
-
         public function DeleteAll(){
-            $num = $this->getBookCount(); // record number of books before deletion
+            $num = $this->getCount(); // record number of books before deletion
             $books = [];
             self::writeData($books);
             echo "All $num books deleted successfully.\n";
-        }
+        }  
         public function BookList(){
             // Read Data
             $books = self::readData();
@@ -110,15 +108,13 @@
             }
 
         }
-
-        public function getBookCount(){
+        public function getCount(){
             // Read Data
             $books = self::readData();
 
             // Count
             return count($books);
         }
-
         public function SearchBook($bookID){
             // Read Data
             $books = self::readData();
@@ -134,7 +130,7 @@
                     if ($id == $bookID){
                         echo "BOOK FOUND!\n";
                         $found = True;
-                        echo "ID [$bookID]\n* Name: {$book['book_name']}\n* ISBN: {$book['book_isbn']}\n* Publisher: {$book['book_publisher']}\n* Author Name: {$book['author']['author_name']}\n* Author ID: {$book['author']['author_id']}\n";
+                        echo "ID [$bookID]\n* Name: {$book['book_name']}\n* ISBN: {$book['book_isbn']}\n* Publisher: {$book['book_publisher']}\n* Author Name: {$book['author']['author_name']}\n* Author ID: {$book['author']['author_id']}\n* Resource Type: {$book['resource_category']}";
                     }
                 }
                 if ($found == False){
@@ -143,7 +139,6 @@
             }
 
         }
-
         public function SortBook(){
             // Read Data
             $books = self::readData();
@@ -164,7 +159,6 @@
             }
 
         }
-
         public function SortBookDes(){
             // Read Data
             $books = self::readData();
@@ -182,16 +176,6 @@
 
                 // confirm
                 echo "Books sorted by ID (descending) successfully.\n";
-            }
-        }
-
-        public function Empty(){
-            $books = self::readData();
-            if (empty($books)){
-                return True;
-            }
-            else{
-                return False;
             }
         }
     }

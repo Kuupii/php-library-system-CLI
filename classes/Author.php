@@ -1,6 +1,6 @@
 <?php
     class Author{
-        private $author_id = 0;
+        private $author_id;
         private $author_name;
 
         public function __construct(int $author_id, string $author_name){

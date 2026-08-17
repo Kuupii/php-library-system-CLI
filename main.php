@@ -45,7 +45,7 @@
         echo "1: Librarian\n";
         echo "2: Librarian Staff\n";
         $role = readline("Please select a role (1 or 2): ");
-    } while ($role < 1 or $role > 2);
+    } while ($role != 1 && $role != 2);
 
     if ($role == 1){
         $role = "Librarian";
@@ -58,13 +58,16 @@
 
     // Objects
     $books = new BookClass;
+    $resource = new OtherResource;
 
     // Art
     echo $libraryArtHalls;
-    sleep(1);
+    sleep(1);   
 
     // Main
     do{
+        // Screen Clear & Fixes Top Left
+        echo "\e[H\e[2J"; 
         // Welcome
         echo "\n";
         echo "----------------------------------------------------------\n";
@@ -82,21 +85,19 @@
         - Borrower Information
         */
         // choices
-        echo "1: Exit\n";
-        echo "2: View all Books ({$books->getBookCount()})\n"; // ascending/descending
+        echo "2: View all Books ({$books->getCount()})\n"; // ascending/descending
         echo "3: Add a Book\n";
         echo "4: Find a Book by ID\n";
-        echo "5: Configure a Book by ID\n";
-        echo "6: Delete a Book by ID\n";
-        echo "7: Delete ALL Books\n";
+        echo "5: Delete a Book by ID\n";
+        echo "6: Delete ALL Books\n";
         echo "\n";
-        echo "8: View all Other Resources\n";
-        echo "9: Add an Other Resource\n";
-        echo "10: Find an Other Resource by ID\n";
-        echo "11: Configure an Other Resource by ID\n";
-        echo "12: Delete an Other Resource by ID\n";
-        echo "13: Delete ALL Other Resources\n";
+        echo "7: View all Other Resources ({$resource->getCount()})\n";
+        echo "8: Add an Other Resource\n";
+        echo "9: Find an Other Resource by ID\n";
+        echo "10: Delete an Other Resource by ID\n";
+        echo "11: Delete ALL Other Resources\n";
         echo "\n";
+        echo "1: Exit\n";
         echo "99: Delete ALL Resources\n";
         echo "\n";
 
@@ -105,11 +106,15 @@
         $choice = (int)readline("Enter command number : ");
         echo "\n";
         $exit = False;
+
+        // Screen Clear & Fixes Top Left
+        echo "\e[H\e[2J"; 
+
         switch ($choice){
             // List Books
             case 2:
                 $books->BookList();
-                echo $books->getBookCount() . " entries found.\n";
+                echo $books->getCount() . " entries found.\n";
                 loadTime();
                 break;
                 
@@ -133,17 +138,11 @@
                 $books->SearchBook($idToFind);
                 echo "\n";
                 loadTime();
-                break;
-                
-            // Configure Book
-            case 5:
-                loadTime();
-                break;
-                
+                break;                
             // Delete Book
-            case 6:
+            case 5:
                 // get ID
-                $deleteId = readline("Book ID to delete: ");
+                $deleteId = (int)readline("Book ID to delete: ");
                 
                 // double check
                 $books->SearchBook($deleteId);
@@ -164,15 +163,15 @@
                 break;
                 
             // Delete All Books
-            case 7:
+            case 6:
                 // Double Check
-                if ($books->Empty() == True){
+                if (empty($books) == True){
                     echo "No  books to delete.\n";
                 }
                 else{
                     do{
-                        $check = readline("Are you sure you want to delete all {$books->getBookCount()} books?(y/n): ");
-                        strtolower($check);
+                        $check = readline("Are you sure you want to delete all {$books->getCount()} books?(y/n): ");
+                        $check = strtolower($check);
                     } while($check != "y" && $check != "n");
                     
                     // Deletes ALL
@@ -185,19 +184,68 @@
                 }
                 loadTime();
                 break;
+            
+            
+            
+            // View Other Resources
+            case 7:
+                $resource->ResourceList();
+                echo $resource->getCount() . " entries found.\n";                
                 
+                loadTime();
+                break;
+            // Add Other Resource
+            case 8:
+                // resource_id, resource_name, resource_description, resource_brand
+                $resource_id = (int)readline("Resource ID: ");
+                $resource_name = readline("Resource Name: ");
+                $resource_description = readline("Book Description: ");
+                $resource_brand = readline("Resource Brand: ");
 
+                $resource->Add($resource_id, $resource_name, $resource_description, $resource_brand);
+
+                loadTime();
+                break;         
+            // Find Resource
+            case 9:
+                $idToFind = (int)readline("Enter Other Resource ID you would like to search for: ");
+                $resource->SearchResource($idToFind);
+                echo "\n";
+                loadTime();
+                break;      
+            // Delete Resource
+            case 10:
+                // get ID
+                $deleteId = (int)readline("Other Resource ID to delete: ");
+                
+                // double check
+                $resource->SearchResource($deleteId);
+                do {
+                    $check = readline("Are you sure you want to delete this Other Resource?(y/n)");
+                    $check = strtolower($check);
+                } while ($check != "y" && $check != "n");
+
+                if ($check == "y"){
+                    $resource->DeleteResource($deleteId);
+                }
+                else{
+                    echo "Aborting...";
+                }
+
+                echo "\n";
+                loadTime();
+                break;                
+            // Exit
             case 1:
                 echo "Exiting...";
                 sleep(1);
                 $exit = True;
                 break;
+            // Default retries
             default:
                 echo "Invalid Input. Try again.\n";
                 loadTime();
                 break;
         }
-
-
     } while ($exit == False);
 ?>
