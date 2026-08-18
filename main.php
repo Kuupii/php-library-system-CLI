@@ -155,12 +155,13 @@
                     $book_name = readline("Book Name: ");
                     $book_isbn = (int)readline("Book ISBN: ");
                     $book_publisher = readline("Book Publisher: ");
+                    $notes = (int)readline("Notes: ");
                     $author_id = (int)readline("Author ID: ");
                     $author_name = readline("Author Name: ");
                     
                     $author = new Author($author_id, $author_name);
 
-                    $books->Add($book_id, $book_name, $book_isbn, $book_publisher, $author);
+                    $books->Add($book_id, $book_name, $book_isbn, $book_publisher, $notes, $author);
                 }
                 else{
                     echo "Access Denied\n";
@@ -247,8 +248,9 @@
                     $resource_name = readline("Resource Name: ");
                     $resource_description = readline("Book Description: ");
                     $resource_brand = readline("Resource Brand: ");
+                    $notes = readline("Notes: ");
 
-                    $resource->Add($resource_id, $resource_name, $resource_description, $resource_brand);
+                    $resource->Add($resource_id, $resource_name, $resource_description, $resource_brand, $notes);
                 }
                 else{
                     echo "Access Denied\n";

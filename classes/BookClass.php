@@ -47,21 +47,24 @@
                 return;
             }
 
-            // Add new book
-            $books[$id] = [
-                'book_name' => $book_name,
-                'book_isbn' => $book_isbn,
-                'book_publisher' => $book_publisher,
-                'notes' => $notes,
-                'author' => $this->author->getArray(),
-                'resource_category' => $this->getResourceCategory(),
-            ];
+            else{
+                // Add new book
+                $books[$id] = [
+                    'book_name' => $book_name,
+                    'book_isbn' => $book_isbn,
+                    'book_publisher' => $book_publisher,
+                    'notes' => $notes,
+                    'author' => $this->author->getArray(),
+                    'resource_category' => $this->getResourceCategory(),
+                ];
 
-            // Write
-            self::writeData($books);
+                // Write
+                self::writeData($books);
 
-            // Confirm
-            echo "Book added successfully.\n";
+                // Confirm
+                echo "Book added successfully.\n";                
+            }
+
         }
         public function DeleteBook($id){
             // Read Data
@@ -134,14 +137,15 @@
                     if ($id == $bookID){
                         echo "BOOK FOUND!\n";
                         $found = True;
-                        echo "ID [$bookID]\n* Name: {$book['book_name']}\n* ISBN: {$book['book_isbn']}\n* Publisher: {$book['book_publisher']}\n* Notes: {$book['notes']}\n* Author Name: {$book['author']['author_name']}\n* Author ID: {$book['author']['author_id']}\n* Resource Type: {$book['resource_category']}";
+                        echo "ID [$bookID]\n* Name: {$book['book_name']}\n* ISBN: {$book['book_isbn']}\n* Publisher: {$book['book_publisher']}\n* Notes: {$book['notes']}\n* Author Name: {$book['author']['author_name']}\n* Author ID: {$book['author']['author_id']}\n* Resource Type: {$book['resource_category']}\n";
+                        return True;
                     }
                 }
                 if ($found == False){
                     echo "!!! Book with ID [$bookID] could not be found.\n";
                 }
             }
-
+            return False;
         }
         public function SortBook(){
             // Read Data
