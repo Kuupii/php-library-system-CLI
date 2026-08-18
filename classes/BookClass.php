@@ -31,13 +31,13 @@
         }
 
         // Public Methods
-        public function Add(int $id, string $book_name, int $book_isbn, string $book_publisher, int $author_id, string $author_name){
+        public function Add(int $id, string $book_name, int $book_isbn, string $book_publisher, string $notes, Author $author){
             // Parameters Set
             $this->id = $id;
             $this->book_name = $book_name;
             $this->book_isbn = $book_isbn;
             $this->book_publisher = $book_publisher;
-            $this->author = new Author($author_id, $author_name);
+            $this->author = $author;
         
             // Read data
             $books = self::readData();
@@ -52,6 +52,7 @@
                 'book_name' => $book_name,
                 'book_isbn' => $book_isbn,
                 'book_publisher' => $book_publisher,
+                'notes' => $notes,
                 'author' => $this->author->getArray(),
                 'resource_category' => $this->getResourceCategory(),
             ];
@@ -105,7 +106,7 @@
                 // Display every entry
                 echo "         --- List of Books ---\n";
                 foreach ($books as $id => $book){
-                    echo "* ID ($id)\n* [Name]: {$book['book_name']}\n* [ISBN]: {$book['book_isbn']}\n* [Publisher]: {$book['book_publisher']}\n* [Author]: {$book['author']['author_name']}\n";
+                    echo "* ID ($id)\n* [Name]: {$book['book_name']}\n* [ISBN]: {$book['book_isbn']}\n* [Notes]: {$book['notes']}\n* [Publisher]: {$book['book_publisher']}\n* [Author]: {$book['author']['author_name']}\n";
                     echo "\n";
                 }
             }
@@ -133,7 +134,7 @@
                     if ($id == $bookID){
                         echo "BOOK FOUND!\n";
                         $found = True;
-                        echo "ID [$bookID]\n* Name: {$book['book_name']}\n* ISBN: {$book['book_isbn']}\n* Publisher: {$book['book_publisher']}\n* Author Name: {$book['author']['author_name']}\n* Author ID: {$book['author']['author_id']}\n* Resource Type: {$book['resource_category']}";
+                        echo "ID [$bookID]\n* Name: {$book['book_name']}\n* ISBN: {$book['book_isbn']}\n* Publisher: {$book['book_publisher']}\n* Notes: {$book['notes']}\n* Author Name: {$book['author']['author_name']}\n* Author ID: {$book['author']['author_id']}\n* Resource Type: {$book['resource_category']}";
                     }
                 }
                 if ($found == False){
@@ -180,6 +181,9 @@
                 // confirm
                 echo "Books sorted by ID (descending) successfully.\n";
             }
+        }
+        public function getDescription(){
+            return "Books contain information such as a title, ISBN, publisher and author.";
         }
     }
 ?>

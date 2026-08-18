@@ -3,9 +3,10 @@
         "book_name": "Ao Ashi",
         "book_isbn": 928399928,
         "book_publisher": "Shogakukan",
+        "notes": "NA",
         "author": {
             "author_id": 1,
-            "author_name": "Yugo Kobayashi"
+            "author_name": "Yuho Kobayashi"
         },
         "resource_category": "BOOK"
     },
@@ -13,6 +14,7 @@
         "book_name": "Eragon",
         "book_isbn": 201922919,
         "book_publisher": "Alfred A. Knopf",
+        "notes": "Borrowed by User1",
         "author": {
             "author_id": 2,
             "author_name": "Christopher Paolini"
@@ -23,9 +25,10 @@
         "book_name": "I know what you did last Wednesday",
         "book_isbn": 291929392,
         "book_publisher": "Walker Books",
+        "notes": "Borrowed by User2",
         "author": {
             "author_id": 3,
-            "author_name": "Anthony Horowitz"
+            "author_name": "Christopher Paolini"
         },
         "resource_category": "BOOK"
     },
@@ -33,6 +36,7 @@
         "book_name": "Happy Face",
         "book_isbn": 222919112,
         "book_publisher": "Naver Webtoon",
+        "notes": "NA",
         "author": {
             "author_id": 4,
             "author_name": "Jeo-nyeok LEE"
@@ -43,6 +47,7 @@
         "book_name": "Amulet",
         "book_isbn": 220098796,
         "book_publisher": "Graphix",
+        "notes": "NA",
         "author": {
             "author_id": 5,
             "author_name": "Kazu Kibuishi"

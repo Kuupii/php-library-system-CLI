@@ -27,7 +27,7 @@
             file_put_contents(self::FILE_PATH, $file);
         }
 
-        public function Add(int $id, string $res_name, string $res_des, string $res_brand){
+        public function Add(int $id, string $res_name, string $res_des, string $res_brand, string $notes){
             // Read data
             $resource = self::readData();
 
@@ -41,6 +41,7 @@
                 'res_name' => $res_name,
                 'res_des' => $res_des,
                 'res_brand' => $res_brand,
+                'notes' => $notes,
                 'resource_category' => $this->getResourceCategory(),
             ];
 
@@ -63,7 +64,7 @@
                 // Display every entry
                 echo "         --- List of Other Resources ---\n";
                 foreach ($resource as $id => $aResource){
-                    echo "* ID ($id)\n* [Resource Name]: {$aResource['res_name']}\n* [Resource Description]: {$aResource['res_des']}\n* [Resource Brand]: {$aResource['res_brand']}\n";
+                    echo "* ID ($id)\n* [Resource Name]: {$aResource['res_name']}\n* [Resource Description]: {$aResource['res_des']}\n* [Resource Brand]: {$aResource['res_brand']}\n* [Notes]: {$aResource['notes']}\n";
                     echo "\n";
                 }
             }
@@ -117,7 +118,7 @@
                     if ($id == $resourceID){
                         echo "OTHER RESOURCE FOUND!\n";
                         $found = True;
-                        echo "ID [$resourceID]\n* Name: {$aResource['res_name']}\n* Resource Description: {$aResource['res_des']}\n* Resource_Brand: {$aResource['res_brand']}\n* Resource Type: {$aResource['resource_category']}\n";
+                        echo "ID [$resourceID]\n* Name: {$aResource['res_name']}\n* Resource Description: {$aResource['res_des']}\n* Resource_Brand: {$aResource['res_brand']}\n* Resource Type: {$aResource['resource_category']}\n* Notes: {$aResource['notes']}\n";
                     }
                 }
                 if ($found == False){
@@ -166,6 +167,9 @@
                 // confirm
                 echo "Other Resources sorted by ID (descending) successfully.\n";
             }
+        }
+        public function getDescription(){
+            return "Other resources are physical library equipment or resources.";
         }
     }
 ?>

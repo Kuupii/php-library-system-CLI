@@ -10,5 +10,9 @@
         public function setResourceCategory($newCategory){
             $this->resource_category = $newCategory;
         }
+
+        public function getDescription(){
+            return "This is a general library resource.";
+        }
     }
 ?>
