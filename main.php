@@ -4,19 +4,8 @@
     Kieron Pang
     05/08/2026
     Skill Assessment 1: Software Design Solution
-    Select and use three language data types, three operators and three expressions.
-    - Use correct language syntax for one sequence, one selection and two iteration constructs.
-    - Use a modular approach to implement the logic for one object operation 
-    - Implement a class that uses arrays of primitive data types twice.
-    - Read from and write to one text file
-    - Implement two classes that each contain four instance variables
-    - Implement one class that contains two options for object construction
-    - Implement one class that uses user-defined object aggregation
-    - Implement polymorphism once for code extensibility
-    - Use at least two data structures according to organisational guidelines
-    - Use at least two standard algorithms (one Search and one sort) according to organisational guidelines
-    - Perform two (2) unit tests by writing the code
     */
+    
     /* Determine Users - Two Users are Librarian and Librarian Staff
      Librarian - Managing Library Resources
                - Add, update and deleting books
