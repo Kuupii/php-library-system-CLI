@@ -122,8 +122,8 @@
             echo "10: Delete an Other Resource by ID\n";
             echo "11: Delete ALL Other Resources\n";
             echo "\n";
-            echo "90: POLYMORPHISM EXAMPLE\n";
             echo "88: ADD TEST DEBUG DATA\n";
+            echo "90: POLYMORPHISM EXAMPLE\n";
             echo "99: DELETE ALL\n";
             echo "\n";
             echo "1: Exit\n";
