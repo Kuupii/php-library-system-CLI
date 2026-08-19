@@ -106,8 +106,11 @@
             echo "\n";
         }
         else if ($role == "Librarian Staff"){
-            echo "2: View all Books\n";
-            echo "4: Find a Book by ID\n";            
+            echo "2: View all Books ({$books->getCount()})\n";
+            echo "4: Find a Book by ID\n";     
+            echo "\n";
+            echo "7: View all Other Resources ({$resource->getCount()})\n";    
+            echo "9: Find an Other Resource by ID\n";   
         }
         else{
             echo "2: View all Books ({$books->getCount()})\n"; 

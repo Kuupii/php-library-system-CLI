@@ -53,16 +53,5 @@
             "author_name": "Kazu Kibuishi"
         },
         "resource_category": "BOOK"
-    },
-    "0": {
-        "book_name": "test",
-        "book_isbn": 0,
-        "book_publisher": "test",
-        "notes": "0",
-        "author": {
-            "author_id": 0,
-            "author_name": "test"
-        },
-        "resource_category": "BOOK"
     }
 }
