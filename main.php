@@ -82,37 +82,49 @@
             echo "2: View all Books ({$books->getCount()})\n"; 
             echo "3: Add a Book\n";
             echo "4: Find a Book by ID\n";
-            echo "5: Delete a Book by ID\n";
-            echo "6: Delete ALL Books\n";
+            echo "5: Sort Books Ascendingly\n";
+            echo "6: Sort Books Descendingly\n";
+            echo "7: Delete a Book by ID\n";
+            echo "8: Delete ALL Books\n";
             echo "\n";
-            echo "7: View all Other Resources ({$resource->getCount()})\n";
-            echo "8: Add an Other Resource\n";
-            echo "9: Find an Other Resource by ID\n";
-            echo "10: Delete an Other Resource by ID\n";
-            echo "11: Delete ALL Other Resources\n";
+            echo "9: View all Other Resources ({$resource->getCount()})\n";
+            echo "10: Add an Other Resource\n";
+            echo "11: Find an Other Resource by ID\n";
+            echo "12: Sort Other Resources Ascendingly\n";
+            echo "13: Sort Other Resources Descendingly\n";
+            echo "14: Delete an Other Resource by ID\n";
+            echo "15: Delete ALL Other Resources\n";
             echo "\n";
             echo "1: Exit\n";
             echo "\n";
         }
         else if ($role == "Librarian Staff"){
             echo "2: View all Books ({$books->getCount()})\n";
-            echo "4: Find a Book by ID\n";     
+            echo "4: Find a Book by ID\n";    
+            echo "5: Sort Books Ascendingly\n";
+            echo "6: Sort Books Descendingly\n"; 
             echo "\n";
             echo "7: View all Other Resources ({$resource->getCount()})\n";    
-            echo "9: Find an Other Resource by ID\n";   
+            echo "9: Find an Other Resource by ID\n";  
+            echo "12: Sort Other Resources Ascendingly\n";
+            echo "13: Sort Other Resources Descendingly\n"; 
         }
         else{
             echo "2: View all Books ({$books->getCount()})\n"; 
             echo "3: Add a Book\n";
             echo "4: Find a Book by ID\n";
-            echo "5: Delete a Book by ID\n";
-            echo "6: Delete ALL Books\n";
+            echo "5: Sort Books Ascendingly\n";
+            echo "6: Sort Books Descendingly\n"; 
+            echo "7: Delete a Book by ID\n";
+            echo "8: Delete ALL Books\n";
             echo "\n";
-            echo "7: View all Other Resources ({$resource->getCount()})\n";
-            echo "8: Add an Other Resource\n";
-            echo "9: Find an Other Resource by ID\n";
-            echo "10: Delete an Other Resource by ID\n";
-            echo "11: Delete ALL Other Resources\n";
+            echo "9: View all Other Resources ({$resource->getCount()})\n";
+            echo "10: Add an Other Resource\n";
+            echo "11: Find an Other Resource by ID\n";
+            echo "12: Sort Other Resources Ascendingly\n";
+            echo "13: Sort Other Resources Descendingly\n";
+            echo "14: Delete an Other Resource by ID\n";
+            echo "15: Delete ALL Other Resources\n";
             echo "\n";
             echo "88: ADD TEST DEBUG DATA\n";
             echo "90: POLYMORPHISM EXAMPLE\n";
@@ -168,9 +180,21 @@
                 $books->SearchBook($idToFind);
                 echo "\n";
                 loadTime();
-                break;                
-            // Delete Book
+                break;     
+            // Sort Ascending
             case 5:
+                $books->SortBook();
+                echo "\n";
+                loadTime();
+                break;
+            // Sort Descending  
+            case 6:
+                $books->SortBookDes();
+                echo "\n";
+                loadTime(); 
+                break;        
+            // Delete Book
+            case 7:
                 if ($role == "Librarian" || $role == "ADMIN"){
                     // get ID
                     $deleteId = (int)readline("Book ID to delete: ");
@@ -197,7 +221,7 @@
                 break;
                 
             // Delete All Books
-            case 6:
+            case 8:
                 if ($role == "Librarian" || $role == "ADMIN"){
                     // Double Check
                     if ($books->getCount() == 0){
@@ -225,7 +249,7 @@
                 loadTime();
                 break;
             // View Other Resources
-            case 7:
+            case 9:
                 $resource->ResourceList();
                 echo $resource->getCount() . " entries found.\n";                
                 
@@ -233,7 +257,7 @@
                 loadTime();
                 break;
             // Add Other Resource
-            case 8:
+            case 10:
                 if ($role == "Librarian" || $role == "ADMIN"){
                     // resource_id, resource_name, resource_description, resource_brand
                     $resource_id = (int)readline("Resource ID: ");
@@ -251,14 +275,26 @@
                 loadTime();
                 break;         
             // Find Resource
-            case 9:
+            case 11:
                 $idToFind = (int)readline("Enter Other Resource ID you would like to search for: ");
                 $resource->SearchResource($idToFind);
                 echo "\n";
                 loadTime();
                 break;      
+            // Sort Ascending
+            case 12:
+                $resource->SortBook();
+                echo "\n";
+                loadTime();
+                break;
+            // Sort Descending  
+            case 13:
+                $resource->SortBookDes();
+                echo "\n";
+                loadTime();
+                break;                   
             // Delete Resource
-            case 10:
+            case 14:
                 if ($role == "Librarian" || $role == "ADMIN"){
                     // get ID
                     $deleteId = (int)readline("Other Resource ID to delete: ");
@@ -285,7 +321,7 @@
                 loadTime();
                 break;  
             // Delete ALL Other Resources
-            case 11:
+            case 15:
                 if ($role == "Librarian" || $role == "ADMIN"){
                     // Double Check
                     if ($books->getCount() == 0){

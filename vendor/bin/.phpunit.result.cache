@@ -1,1 +1,1 @@
-{"version":2,"defects":[],"times":{"BookClassTest::testSearchBook":0.001,"BookClassTest::testGetCount":0}}
+{"version":2,"defects":[],"times":{"BookClassTest::testSearchBook":0.004,"BookClassTest::testGetCount":0.002}}
